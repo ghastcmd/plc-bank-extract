@@ -2,4 +2,9 @@ FROM golang
 
 WORKDIR /app
 
-RUN ["go", "run", "."]
+COPY . .
+
+RUN go install github.com/cosmtrek/air@latest
+RUN air init
+
+CMD ["air"]
