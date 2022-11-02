@@ -1,0 +1,12 @@
+services:
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            APP_PORT: 3030
+        ports:
+            - 3030:3030
+        command: air
+        volumes:
+            - .:/app
