@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ghastcmd/plc-bank-extract/model"
+	model "github.com/ghastcmd/plc-bank-extract/models"
 )
 
 func main() {
