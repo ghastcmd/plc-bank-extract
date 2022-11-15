@@ -37,11 +37,14 @@ func TestGetDayExtract(t *testing.T) {
 	for i := range expectedInput {
 		if expectedInput[i].Mode != de.TransactionInput[i].Mode {
 			t.Errorf("Output Mode (%v) not equal to (%v)", expectedInput[i].Mode, de.TransactionInput[i].Mode)
-		} else if expectedInput[i].Receiving != de.TransactionInput[i].Receiving {
+		}
+		if expectedInput[i].Receiving != de.TransactionInput[i].Receiving {
 			t.Errorf("Output Receiving (%v) not equal to (%v)", expectedInput[i].Receiving, de.TransactionInput[i].Receiving)
-		} else if expectedInput[i].Recipient != de.TransactionInput[i].Recipient {
+		}
+		if expectedInput[i].Recipient != de.TransactionInput[i].Recipient {
 			t.Errorf("Output Recipient (%v) not equal to (%v)", expectedInput[i].Recipient, de.TransactionInput[i].Recipient)
-		} else if expectedInput[i].Value != de.TransactionInput[i].Value {
+		}
+		if expectedInput[i].Value != de.TransactionInput[i].Value {
 			t.Errorf("Output Value (%v) not equal to (%v)", expectedInput[i].Value, de.TransactionInput[i].Value)
 		}
 	}
@@ -49,11 +52,14 @@ func TestGetDayExtract(t *testing.T) {
 	for i := range expectedOutput {
 		if expectedOutput[i].Mode != de.TransactionOutput[i].Mode {
 			t.Errorf("Output Mode (%v) not equal to (%v)", expectedOutput[i].Mode, de.TransactionOutput[i].Mode)
-		} else if expectedOutput[i].Receiving != de.TransactionOutput[i].Receiving {
+		}
+		if expectedOutput[i].Receiving != de.TransactionOutput[i].Receiving {
 			t.Errorf("Output Receiving (%v) not equal to (%v)", expectedOutput[i].Receiving, de.TransactionOutput[i].Receiving)
-		} else if expectedOutput[i].Recipient != de.TransactionOutput[i].Recipient {
+		}
+		if expectedOutput[i].Recipient != de.TransactionOutput[i].Recipient {
 			t.Errorf("Output Recipient (%v) not equal to (%v)", expectedOutput[i].Recipient, de.TransactionOutput[i].Recipient)
-		} else if expectedOutput[i].Value != de.TransactionOutput[i].Value {
+		}
+		if expectedOutput[i].Value != de.TransactionOutput[i].Value {
 			t.Errorf("Output Value (%v) not equal to (%v)", expectedOutput[i].Value, de.TransactionOutput[i].Value)
 		}
 	}
