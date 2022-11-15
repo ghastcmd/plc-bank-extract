@@ -35,7 +35,7 @@ func TestFetchDailyTransactions(t *testing.T) {
 		},
 	}
 
-	for i := range transactions {
+	for i := range expected {
 		if transactions[i].Date != expected[i].Date {
 			t.Errorf("Output Date (%q) not equal to expected (%q)", transactions[i].Date, expected[i].Date)
 		} else if transactions[i].Mode != expected[i].Mode {
