@@ -10,3 +10,8 @@ type MonthExtract struct {
 	FinalBalance     float64      `json:"totalBalance"`
 	ExtractsPerMonth []DayExtract `json:"extractsPerMonth"`
 }
+
+func (me *MonthExtract) GetMonthExtract() (s string) {
+
+	return s
+}
