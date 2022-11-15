@@ -12,7 +12,12 @@ type DayExtract struct {
 	TransactionOutput []Transaction `json:"[]transactionOutput"`
 }
 
-func (de *DayExtract) GetDayExtract(transactions []Transaction) string {
+func (de *DayExtract) GetDayExtract(date time.Time) string {
+	// Setting initial date for the day extract
+	de.Date = date
+	// Fetching the data by a given date
+	transactions := FetchAndTransformDailyTransactions()
+
 	// Separate all the transactions into input and output transaction
 	for _, transaction := range transactions {
 		if transaction.Receiving {
@@ -37,7 +42,7 @@ func (de *DayExtract) calculateInputValue() (outValue float64) {
 }
 
 func (de *DayExtract) calculateOutputValue() (inValue float64) {
-	for _, transaction := range de.TransactionInput {
+	for _, transaction := range de.TransactionOutput {
 		inValue += transaction.Value
 	}
 	return inValue
