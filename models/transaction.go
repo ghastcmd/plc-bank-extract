@@ -1,7 +1,16 @@
 package models
 
+import (
+	"errors"
+	"fmt"
+	"strings"
+
+	"github.com/ghastcmd/plc-bank-extract/controllers"
+)
+
 const (
-	CreditCard = iota
+	Invalid = iota
+	CreditCard
 	Pix
 	Transference
 )
@@ -23,4 +32,51 @@ func (t *Transaction) SetTransaction(
 	t.Receiving = is_receiving
 	t.Recipient = recipient
 	t.Value = value
+}
+
+func getTransactionMode(mode string) int {
+	switch strings.Title(strings.ToLower(mode)) {
+	case "Pix":
+		return Pix
+	case "Credit Card":
+		return CreditCard
+	case "Transference":
+		return Transference
+	default:
+		return Invalid
+	}
+}
+
+func getTransactionReceiving(receiving string) (bool, error) {
+	switch strings.ToLower(receiving) {
+	case "true":
+		return true, nil
+	case "false":
+		return false, nil
+	default:
+		return false, errors.New("Invalid token for Receiving")
+	}
+}
+
+func FetchAndTransformDailyTransactions() (transactions []Transaction) {
+	rawTransactions := controllers.FetchDailyTransactions()
+
+	for _, rawTransaction := range rawTransactions {
+		mode := getTransactionMode(rawTransaction.Mode)
+		receiving, err := getTransactionReceiving(rawTransaction.Receiving)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		newTransaction := Transaction{
+			Mode:      mode,
+			Receiving: receiving,
+			Recipient: rawTransaction.Recipient,
+			Value:     rawTransaction.Value,
+		}
+
+		transactions = append(transactions, newTransaction)
+	}
+
+	return transactions
 }
