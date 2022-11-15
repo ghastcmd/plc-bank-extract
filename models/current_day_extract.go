@@ -16,7 +16,7 @@ func (de *DayExtract) GetDayExtract(date time.Time) string {
 	// Setting initial date for the day extract
 	de.Date = date
 	// Fetching the data by a given date
-	transactions := FetchAndTransformDailyTransactions()
+	transactions := FetchAndTransformDailyTransactions(date)
 
 	// Separate all the transactions into input and output transaction
 	for _, transaction := range transactions {

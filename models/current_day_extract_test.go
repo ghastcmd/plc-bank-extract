@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"testing"
 	"time"
 )
@@ -28,11 +27,11 @@ func TestGetDayExtract(t *testing.T) {
 	expectedOutput := []Transaction{}
 
 	if len(expectedInput) != len(de.TransactionInput) {
-		t.Errorf("Lenghts of expectedInput and de.TransactionInput differ, got: %v and %v", len(expectedInput), len(de.TransactionInput))
+		t.Errorf("Lenghts of expectedInput and de.TransactionInput differ, got %v, expected %v", len(de.TransactionInput), len(expectedInput))
 	}
 
 	if len(expectedOutput) != len(de.TransactionOutput) {
-		t.Errorf("Lenghts of expectedOutput and de.TransactionOutput differ, got: %v and %v", len(expectedOutput), len(de.TransactionOutput))
+		t.Errorf("Lenghts of expectedOutput and de.TransactionOutput differ, got %v, expected %v", len(de.TransactionOutput), len(expectedOutput))
 	}
 
 	for i := range expectedInput {
@@ -58,6 +57,4 @@ func TestGetDayExtract(t *testing.T) {
 			t.Errorf("Output Value (%v) not equal to (%v)", expectedOutput[i].Value, de.TransactionOutput[i].Value)
 		}
 	}
-
-	fmt.Printf("%+v\n", de)
 }
