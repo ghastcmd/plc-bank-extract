@@ -13,48 +13,41 @@ type JsonRespRaw struct {
 	Value     float64 `json:"value"`
 }
 
-func FetchDailyTransactions() []JsonRespRaw {
-	test_transactions := `[
-	{
-		"date": "2022-09-21",
-		"mode": "PIX",
-		"receiving": "true",
-		"recipient": "378.432.324-89",
-		"value": 3232.32,
-	},
-	{
-		"date": "2022-09-22",
-		"mode": "PIX",
-		"receiving": "false",
-		"recipient": "378.432.324-89",
-		"value": 23.32,
-	},
-	{
-		"date": "2022-09-21",
-		"mode": "PIX",
-		"receiving": "true",
-		"recipient": "323.432.324-89",
-		"value": 123.32,
-	},
-	{
-		"date": "2022-09-23",
-		"mode": "PIX",
-		"receiving": "true",
-		"recipient": "378.431.874-89",
-		"value": 1.32,
-	},
-]`
+func FetchDailyTransactions() (retTransactions []JsonRespRaw) {
+	testTransactions := `[
+		{
+			"date": "2022-09-21",
+			"mode": "PIX",
+			"receiving": "true",
+			"recipient": "378.432.324-89",
+			"value": 3232.32
+		},
+		{
+			"date": "2022-09-22",
+			"mode": "PIX",
+			"receiving": "false",
+			"recipient": "378.432.324-89",
+			"value": 23.32
+		},
+		{
+			"date": "2022-09-21",
+			"mode": "PIX",
+			"receiving": "true",
+			"recipient": "323.432.324-89",
+			"value": 123.32
+		},
+		{
+			"date": "2022-09-23",
+			"mode": "PIX",
+			"receiving": "true",
+			"recipient": "378.431.874-89",
+			"value": 1.32
+		}
+	]`
 
-	str, err := json.Marshal(test_transactions)
-	if err != nil {
-		fmt.Println(err)
+	if err := json.Unmarshal([]byte(testTransactions), &retTransactions); err != nil {
+		fmt.Printf("%v %v\n", 56, err)
 	}
 
-	var ret_transactions []JsonRespRaw
-	err = json.Unmarshal([]byte(str), &ret_transactions)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	return ret_transactions
+	return retTransactions
 }
