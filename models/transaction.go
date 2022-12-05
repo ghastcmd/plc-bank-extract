@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ghastcmd/plc-bank-extract/controllers"
+	"github.com/ghastcmd/plc-bank-extract/database"
 )
 
 const (
@@ -60,7 +60,7 @@ func getTransactionReceiving(receiving string) (bool, error) {
 }
 
 func FetchAndTransformDailyTransactions(date time.Time) (transactions []Transaction) {
-	rawTransactions := controllers.FetchDailyTransactions(date)
+	rawTransactions := database.FetchDailyTransactions(date)
 
 	for _, rawTransaction := range rawTransactions {
 		mode := getTransactionMode(rawTransaction.Mode)
