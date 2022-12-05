@@ -30,7 +30,9 @@ func (me *MonthExtract) GetMonthExtract(date time.Time) (s string) {
 		currentDate := time.Date(year, month, i, 0, 0, 0, 0, date.Location())
 		var de DayExtract
 		de.GetDayExtract(currentDate)
-		me.ExtractsPerMonth = append(me.ExtractsPerMonth, de)
+		if de.InputValue != 0 || de.OutputValue != 0 {
+			me.ExtractsPerMonth = append(me.ExtractsPerMonth, de)
+		}
 
 		// Calculate total inputs
 		me.TotalInputs += de.InputValue

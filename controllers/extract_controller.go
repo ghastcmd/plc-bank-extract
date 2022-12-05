@@ -16,7 +16,7 @@ func FetchMonthData(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Printf("month: %d, year: %d\n", req.Month, req.Year)
+	fmt.Printf("Calculando extrato para o mês %d do ano %d\n", req.Month, req.Year)
 
 	var me models.MonthExtract
 	me.GetMonthExtract(time.Date(req.Year, req.Month, 1, 0, 0, 0, 0, time.UTC))
