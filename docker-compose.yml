@@ -1,5 +1,5 @@
 services:
-    backend:
+    golang_backend:
         build:
             context: .
             dockerfile: Dockerfile
@@ -7,6 +7,6 @@ services:
             APP_PORT: 3030
         ports:
             - 3030:3030
-        command: air
+        command: go run main.go 
         volumes:
             - .:/app
