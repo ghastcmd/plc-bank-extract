@@ -7,9 +7,9 @@ import (
 type DayExtract struct {
 	Date              time.Time     `json:"date"`
 	InputValue        float64       `json:"inputValue"`
-	TransactionInput  []Transaction `json:"[]transactionInput"`
+	TransactionInput  []Transaction `json:"transactionInput"`
 	OutputValue       float64       `json:"outputValue"`
-	TransactionOutput []Transaction `json:"[]transactionOutput"`
+	TransactionOutput []Transaction `json:"transactionOutput"`
 }
 
 func (de *DayExtract) GetDayExtract(date time.Time) string {
